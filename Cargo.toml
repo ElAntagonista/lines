@@ -1,0 +1,17 @@
+[package]
+name = "lines"
+version = "0.2.0"
+authors = ["Kris(DevOps) <kmembe@fmsystems.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = "3.0.0-beta.2"
+regex = "1"
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
