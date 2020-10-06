@@ -1,7 +1,6 @@
 use clap::{App, Arg};
 use regex::Regex;
 use std::io::{self, Read, Write};
-
 enum RunType {
     Range(Vec<usize>),
     Lines(Vec<usize>),
@@ -82,11 +81,10 @@ fn range_out(
         if line == None {
             break;
         } else {
-            handle.write_all(line.unwrap().as_bytes()).unwrap();
+            handle.write_all(format!("{}\n",line.unwrap()).as_bytes()).unwrap();
         }
     }
 }
-
 
 fn lines_out(line_nums: Vec<usize>, lines: &mut std::str::Lines, handle: &mut std::io::StdoutLock) {
     let mut counter = 0;
@@ -96,12 +94,11 @@ fn lines_out(line_nums: Vec<usize>, lines: &mut std::str::Lines, handle: &mut st
             break;
         }
         if line_nums.contains(&counter) {
-            handle.write_all(line.unwrap().as_bytes()).unwrap();
+            handle.write_all(format!("{}\n",line.unwrap()).as_bytes()).unwrap();
         }
         counter += 1;
     }
 }
-
 
 fn is_range(val: &str) -> Result<(), String> {
     let re = Regex::new(r"^(\d+)-(\d+)$").unwrap();
