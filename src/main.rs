@@ -81,7 +81,9 @@ fn range_out(
         if line == None {
             break;
         } else {
-            handle.write_all(format!("{}\n",line.unwrap()).as_bytes()).unwrap();
+            handle
+                .write_all(format!("{}\n", line.unwrap()).as_bytes())
+                .unwrap();
         }
     }
 }
@@ -94,7 +96,9 @@ fn lines_out(line_nums: Vec<usize>, lines: &mut std::str::Lines, handle: &mut st
             break;
         }
         if line_nums.contains(&counter) {
-            handle.write_all(format!("{}\n",line.unwrap()).as_bytes()).unwrap();
+            handle
+                .write_all(format!("{}\n", line.unwrap()).as_bytes())
+                .unwrap();
         }
         counter += 1;
     }
