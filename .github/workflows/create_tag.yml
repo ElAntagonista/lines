@@ -1,8 +1,9 @@
 name: Bump version, create new tag and release point
+
 on:
   push:
     branches:
-      - master
+     - master
 
 jobs:
   bump_version:
