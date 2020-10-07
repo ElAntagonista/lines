@@ -46,7 +46,7 @@ impl LinesApp {
             let range: Vec<usize> = matches
                 .value_of("range")
                 .unwrap()
-                .split("-")
+                .split('-')
                 .map(|x| x.parse::<usize>().unwrap())
                 .collect();
             LinesApp {
@@ -63,7 +63,7 @@ impl LinesApp {
         let mut handle = stdout.lock();
         match self.run_type {
             RunType::Range(v) => range_out(v[0], v[1], &mut lines, &mut handle),
-            RunType::Lines(v) => lines_out(v, &mut lines, &mut handle),
+            RunType::Lines(v) => lines_out(&v, &mut lines, &mut handle),
         }
         Ok(())
     }
@@ -88,7 +88,7 @@ fn range_out(
     }
 }
 
-fn lines_out(line_nums: Vec<usize>, lines: &mut std::str::Lines, handle: &mut std::io::StdoutLock) {
+fn lines_out(line_nums: &[usize], lines: &mut std::str::Lines, handle: &mut std::io::StdoutLock) {
     let mut counter = 0;
     loop {
         let line = lines.next();
