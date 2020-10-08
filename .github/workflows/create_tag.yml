@@ -1,9 +1,8 @@
 name: Bump version, create new tag and release point
-
 on:
   push:
     branches:
-     - master
+      - master
 
 jobs:
   bump_version:
@@ -23,6 +22,6 @@ jobs:
       - name: Repository dispatch tag created event
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.EVENT }}
           event-type: tag-created
           client-payload: '{"new_version": "${{ steps.bump_version.outputs.new_tag }}"}'
